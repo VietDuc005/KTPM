@@ -4,6 +4,7 @@ public class StudentAnalyzer {
 
     /**
      * Phân tích điểm số và trả về số lượng học sinh đạt loại Giỏi.
+     * 
      * @param scores danh sách điểm số
      * @return số học sinh đạt loại Giỏi (>= 8.0)
      */
@@ -17,6 +18,11 @@ public class StudentAnalyzer {
 
         // Duyệt qua danh sách điểm
         for (Double score : scores) {
+            // FIX: Kiểm tra null trước khi so sánh để tránh NullPointerException
+            if (score == null) {
+                continue;
+            }
+
             // Chỉ xét điểm hợp lệ từ 0 đến 10
             if (score >= 0 && score <= 10) {
                 // Học sinh giỏi nếu điểm >= 8.0
@@ -28,8 +34,10 @@ public class StudentAnalyzer {
 
         return count;
     }
+
     /**
      * Tính điểm trung bình các điểm hợp lệ (0–10)
+     * 
      * @param scores danh sách điểm
      * @return điểm trung bình của các điểm hợp lệ
      */
@@ -44,6 +52,11 @@ public class StudentAnalyzer {
 
         // Duyệt qua danh sách điểm
         for (Double score : scores) {
+            // FIX: Kiểm tra null trước khi tính toán
+            if (score == null) {
+                continue;
+            }
+
             // Chỉ tính các điểm hợp lệ
             if (score >= 0 && score <= 10) {
                 sum += score;
