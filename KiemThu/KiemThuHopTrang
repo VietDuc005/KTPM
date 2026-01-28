@@ -1,4 +1,4 @@
-Voi Ham countExcellentStudents:
+Với hàm countExcellentStudents:
 flowchart TD
     S([Start]) --> N1{List is null}
     N1 -- Yes --> R[Return 0]

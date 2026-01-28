@@ -1,4 +1,4 @@
-Voi ca 2 ham:
+Với 2 hàm:
 flowchart TD
     A[Input List Double] --> B{List is null or empty}
     B -- Yes --> R0[Return 0]
