@@ -1,0 +1,51 @@
+Voi Ham countExcellentStudents:
+flowchart TD
+    S([Start]) --> N1{List is null}
+    N1 -- Yes --> R[Return 0]
+    N1 -- No --> N2{List is empty}
+
+    N2 -- Yes --> R
+    N2 -- No --> L[For each score]
+
+    L --> C1{Score is null}
+    C1 -- Yes --> L
+
+    C1 -- No --> C2{Score is NaN or Infinite}
+    C2 -- Yes --> L
+
+    C2 -- No --> C3{Score in range 0 to 10}
+    C3 -- No --> L
+
+    C3 -- Yes --> C4{Score >= 8}
+    C4 -- Yes --> A[Increase count]
+    C4 -- No --> L
+
+    A --> L
+    L --> E([End loop])
+    E --> RET[Return count]
+
+Voi Ham calculateValidAverage:
+flowchart TD
+    S([Start]) --> N1{List is null}
+    N1 -- Yes --> R0[Return 0]
+
+    N1 -- No --> N2{List is empty}
+    N2 -- Yes --> R0
+    N2 -- No --> L[For each score]
+
+    L --> C1{Score is null}
+    C1 -- Yes --> L
+
+    C1 -- No --> C2{Score is NaN or Infinite}
+    C2 -- Yes --> L
+
+    C2 -- No --> C3{Score in range 0 to 10}
+    C3 -- No --> L
+
+    C3 -- Yes --> A[Add score and increase valid count]
+    A --> L
+
+    L --> END([End loop])
+    END --> D{Valid count is zero}
+    D -- Yes --> R0
+    D -- No --> R1[Return average]

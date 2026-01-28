@@ -1,0 +1,51 @@
+Ham 1:
+| **Conditions / Actions** | **TC1** | **TC2** | **TC3** | **TC4** | **TC5** | **TC6** | **TC7** | **TC8** |
+| ------------------------ | ------- | ------- | ------- | ------- | ------- | ------- | ------- | ------- |
+| **List is null**         | Y       | N       | N       | N       | N       | N       | N       | N       |
+| **List is empty**        | –       | Y       | N       | N       | N       | N       | N       | N       |
+| **Score is null**        | –       | –       | Y       | N       | N       | N       | N       | N       |
+| **Score is NaN/Inf**     | –       | –       | N       | Y       | N       | N       | N       | N       |
+| **Score < 0**            | –       | –       | N       | N       | Y       | N       | N       | N       |
+| **Score > 10**           | –       | –       | N       | N       | N       | Y       | N       | N       |
+| **Score in [0..10]**     | –       | –       | N       | N       | N       | N       | Y       | Y       |
+| **Score ≥ 8**            | –       | –       | –       | –       | –       | –       | N       | Y       |
+|                          |         |         |         |         |         |         |         |         |
+| **Return 0**             | X       | X       |         |         |         |         |         |         |
+| **Ignore score**         |         |         | X       | X       | X       | X       | X       |         |
+| **Count++**              |         |         |         |         |         |         |         | X       |
+
+| TC  | Mô tả                        |
+| --- | ---------------------------- |
+| TC1 | List = null                  |
+| TC2 | List rỗng                    |
+| TC3 | Phần tử null                 |
+| TC4 | NaN / Infinity               |
+| TC5 | Điểm < 0                     |
+| TC6 | Điểm > 10                    |
+| TC7 | Hợp lệ nhưng không excellent |
+| TC8 | Hợp lệ và excellent          |
+
+Ham 2 :
+| **Conditions / Actions** | **TC1** | **TC2** | **TC3** | **TC4** | **TC5** | **TC6** | **TC7** |
+| ------------------------ | ------- | ------- | ------- | ------- | ------- | ------- | ------- |
+| **List is null**         | Y       | N       | N       | N       | N       | N       | N       |
+| **List is empty**        | –       | Y       | N       | N       | N       | N       | N       |
+| **Score is null**        | –       | –       | Y       | N       | N       | N       | N       |
+| **Score is NaN/Inf**     | –       | –       | N       | Y       | N       | N       | N       |
+| **Score < 0**            | –       | –       | N       | N       | Y       | N       | N       |
+| **Score > 10**           | –       | –       | N       | N       | N       | Y       | N       |
+| **Score in [0..10]**     | –       | –       | N       | N       | N       | N       | Y       |
+| **Valid count = 0**      | –       | –       | Y       | Y       | Y       | Y       | N       |
+|                          |         |         |         |         |         |         |         |
+| **Return 0**             | X       | X       | X       | X       | X       | X       |         |
+| **Add to sum & count**   |         |         |         |         |         |         | X       |
+| **Return average**       |         |         |         |         |         |         | X       |
+
+| Test code                | TC      |
+| ------------------------ | ------- |
+| `nullList_returns0`      | TC1     |
+| `emptyList_returns0`     | TC2     |
+| `containsNullItem`       | TC3     |
+| `containsNaNAndInfinity` | TC4     |
+| `allInvalid_returns0`    | TC5/TC6 |
+| `onlyOneValidScore`      | TC7     |
