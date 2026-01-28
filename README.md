@@ -40,6 +40,53 @@ Thư mục `unit-test`
 - Bộ kiểm thử đã đạt chuẩn theo kĩ thuật EP.
 - Bộ kiểm thử đã đạt chuẩn theo kĩ thuật BVA.
 
+#### Bảng quyết định
+
+| Conditions / Actions        | TC1 | TC2 | TC3 | TC4 | TC5 | TC6 | TC7 | TC8 |
+|----------------------------|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| **Conditions**             |     |     |     |     |     |     |     |     |
+| List is null               |  Y  |  N  |  N  |  N  |  N  |  N  |  N  |  N  |
+| List is empty              |  –  |  Y  |  N  |  N  |  N  |  N  |  N  |  N  |
+| Score is null              |  –  |  –  |  Y  |  N  |  N  |  N  |  N  |  N  |
+| Score is NaN / Infinity    |  –  |  –  |  N  |  Y  |  N  |  N  |  N  |  N  |
+| Score < 0                  |  –  |  –  |  N  |  N  |  Y  |  N  |  N  |  N  |
+| Score > 10                 |  –  |  –  |  N  |  N  |  N  |  Y  |  N  |  N  |
+| Score in [0..10]           |  –  |  –  |  N  |  N  |  N  |  N  |  Y  |  Y  |
+| Score ≥ 8                  |  –  |  –  |  –  |  –  |  –  |  –  |  N  |  Y  |
+| **Actions**                |     |     |     |     |     |     |     |     |
+| Return 0                   |  X  |  X  |     |     |     |     |     |     |
+| Skip invalid / special      |     |     |  X  |  X  |  X  |  X  |     |     |
+| Count excellent            |     |     |     |     |     |     |     |  X  |
+
+#### Kiểm thử hộp trắng
+```mermaid
+flowchart TD
+    A[Input List Double] --> B{List is null or empty}
+    B -- Yes --> R0[Return 0]
+    B -- No --> C[Loop each score x]
+
+    C --> D{Ignore x}
+    D -- Yes --> C
+    D -- No --> E{Valid range 0 to 10}
+
+    E -- No --> C
+    E -- Yes --> F{Function type}
+
+    F -- CountExcellent --> G{Score >= 8}
+    G -- Yes --> H[Count plus one]
+    G -- No --> C
+    H --> C
+
+    F -- CalculateAverage --> I[Add to sum and count]
+    I --> C
+
+    C --> J{End loop}
+    J -- CountExcellent --> K[Return count]
+    J -- CalculateAverage --> L{Valid count is zero}
+    L -- Yes --> R0
+    L -- No --> M[Return sum divided by count]
+```
+
 ## T5 - 22/1/2025
 ### Bài tập thực hành kiểm thử tự động End-to-End với Cypress
 
