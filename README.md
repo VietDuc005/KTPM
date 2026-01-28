@@ -59,34 +59,60 @@ Thư mục `unit-test`
 | Count excellent            |     |     |     |     |     |     |     |  X  |
 
 #### Kiểm thử hộp trắng
+- Hàm countExcellentStudents: 
 ```mermaid
 flowchart TD
-    A[Input List Double] --> B{List is null or empty}
-    B -- Yes --> R0[Return 0]
-    B -- No --> C[Loop each score x]
+    S([Start]) --> N1{List is null}
+    N1 -- Yes --> R[Return 0]
+    N1 -- No --> N2{List is empty}
 
-    C --> D{Ignore x}
-    D -- Yes --> C
-    D -- No --> E{Valid range 0 to 10}
+    N2 -- Yes --> R
+    N2 -- No --> L[For each score]
 
-    E -- No --> C
-    E -- Yes --> F{Function type}
+    L --> C1{Score is null}
+    C1 -- Yes --> L
 
-    F -- CountExcellent --> G{Score >= 8}
-    G -- Yes --> H[Count plus one]
-    G -- No --> C
-    H --> C
+    C1 -- No --> C2{Score is NaN or Infinite}
+    C2 -- Yes --> L
 
-    F -- CalculateAverage --> I[Add to sum and count]
-    I --> C
+    C2 -- No --> C3{Score in range 0 to 10}
+    C3 -- No --> L
 
-    C --> J{End loop}
-    J -- CountExcellent --> K[Return count]
-    J -- CalculateAverage --> L{Valid count is zero}
-    L -- Yes --> R0
-    L -- No --> M[Return sum divided by count]
+    C3 -- Yes --> C4{Score >= 8}
+    C4 -- Yes --> A[Increase count]
+    C4 -- No --> L
+
+    A --> L
+    L --> E([End loop])
+    E --> RET[Return count]
 ```
+- Hàm calculateValidAverage:
+```mermaid
+flowchart TD
+    S([Start]) --> N1{List is null}
+    N1 -- Yes --> R0[Return 0]
 
+    N1 -- No --> N2{List is empty}
+    N2 -- Yes --> R0
+    N2 -- No --> L[For each score]
+
+    L --> C1{Score is null}
+    C1 -- Yes --> L
+
+    C1 -- No --> C2{Score is NaN or Infinite}
+    C2 -- Yes --> L
+
+    C2 -- No --> C3{Score in range 0 to 10}
+    C3 -- No --> L
+
+    C3 -- Yes --> A[Add score and increase valid count]
+    A --> L
+
+    L --> END([End loop])
+    END --> D{Valid count is zero}
+    D -- Yes --> R0
+    D -- No --> R1[Return average]
+```
 ## T5 - 22/1/2025
 ### Bài tập thực hành kiểm thử tự động End-to-End với Cypress
 
